@@ -1,7 +1,0 @@
-{
-  "display": "standalone",
-  "lang": "en",
-  "name": "stats-slider-app",
-  "short_name": "stats-slider-app",
-  "start_url": "/?utm_source=web_app_manifest"
-}

@@ -1,14 +1,17 @@
-# Use nginx as the base image
-FROM nginx:alpine
+# Use an official lightweight web server image
+FROM nginxalpine
 
-# Copy the web build files to nginx's default public directory
-COPY web-build/ /usr/share/nginx/html/
+# Remove default nginx website
+RUN rm -rf usrsharenginxhtml
 
-# Copy our custom nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy the exported web build into nginx's public folder
+COPY dist usrsharenginxhtml
 
-# Expose port 80
-EXPOSE 80
+# Expose port 8888
+EXPOSE 8888
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"] 
+# Change nginx default listen port to 8888
+RUN sed -i 'slisten       80;listen       8888;g' etcnginxconf.ddefault.conf
+
+# Start nginx in foreground (default command)
+CMD [nginx, -g, daemon off;]
